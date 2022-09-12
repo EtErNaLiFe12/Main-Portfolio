@@ -1,5 +1,5 @@
 import { Suspense, lazy, ElementType } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import RouteWrapper from 'layouts/RouteWrapper';
 import { Navigate, useRoutes } from 'react-router-dom';
 
@@ -8,7 +8,11 @@ import { Navigate, useRoutes } from 'react-router-dom';
 const Loadable = (Component: ElementType) => (props: any) => {
   return (
     <Suspense
-      fallback={<Box sx={{ top: 0, left: 0, width: 1, zIndex: 9999, position: 'fixed' }} />}
+      fallback={
+        <Box sx={{ zIndex: 9999, textAlign: 'center' }}>
+          <Typography sx={{ fontSize: 40 }}>Loading</Typography>
+        </Box>
+      }
     >
       <Component {...props} />
     </Suspense>
@@ -16,18 +20,16 @@ const Loadable = (Component: ElementType) => (props: any) => {
 };
 
 export default function Router() {
-  const elements = useRoutes([
+  return useRoutes([
     {
-      path: '/main-route',
+      path: '/',
       element: <RouteWrapper />,
       children: [
-        { element: <Navigate to="/main-route/main" replace />, index: true },
-        { path: 'main', element: <Main /> },
+        { element: <Navigate to="/mainboard/main" replace />, index: true },
+        { path: 'mainboard/main', element: <Main /> },
       ],
     },
   ]);
-
-  return elements;
 }
 // Dashboard
-const Main = Loadable(lazy(() => import('../pages/main-route/Main')));
+const Main = Loadable(lazy(() => import('../pages/mainboard/Main')));
