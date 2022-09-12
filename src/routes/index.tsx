@@ -18,7 +18,7 @@ const Loadable = (Component: ElementType) => (props: any) => {
 export default function Router() {
   const elements = useRoutes([
     {
-      path: 'main-route',
+      path: '/main-route',
       element: <RouteWrapper />,
       children: [
         { element: <Navigate to="/main-route/main" replace />, index: true },
