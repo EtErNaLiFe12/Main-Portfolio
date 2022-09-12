@@ -1,3 +1,20 @@
+# React Boiler Template (TypeScript)
+
+## MUI setting
+
+yarn add @mui/material @emotion/react @emotion/styled
+
+yarn add @mui/icons-material
+
+### MUI Default Font(Roboto)
+
+```html
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
+```
+
 ## .prettierrc setting
 
 {
