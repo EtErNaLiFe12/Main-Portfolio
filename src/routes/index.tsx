@@ -2,18 +2,13 @@ import { Suspense, lazy, ElementType } from 'react';
 import { Box, Typography } from '@mui/material';
 import RouteWrapper from 'layouts/RouteWrapper';
 import { Navigate, useRoutes } from 'react-router-dom';
+import LoadingScreen from 'pages/loading-screen/LoadingScreen';
 
 // ----------------------------------------------------------------------
 
 const Loadable = (Component: ElementType) => (props: any) => {
   return (
-    <Suspense
-      fallback={
-        <Box sx={{ zIndex: 9999, textAlign: 'center' }}>
-          <Typography sx={{ fontSize: 40 }}>Loading</Typography>
-        </Box>
-      }
-    >
+    <Suspense fallback={<LoadingScreen />}>
       <Component {...props} />
     </Suspense>
   );

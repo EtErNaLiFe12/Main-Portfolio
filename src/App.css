@@ -6,4 +6,6 @@ html {
 
 body {}
 
-#root {}
+#root {
+  margin: 0 40px 0 40px;
+}
