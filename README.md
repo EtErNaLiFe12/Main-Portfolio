@@ -33,19 +33,18 @@ yarn add @mui/icons-material
 
 ### snippet for functional component: fc
 ```
-{
-	"Create Functional React Component": {
-		"prefix": "fc",
-		"body": [
-			"import React from 'react';",
-			"",
-			"function ${TM_FILENAME_BASE}() {",
-			"  return <div>Hello React!</div>;",
-			"}",
-			"",
-			"export default ${TM_FILENAME_BASE};"
-		],
-		"description": "Create Functional React Component"
-	}
-}
+"Functional React Component": {
+			"prefix": "frc",
+			"body": [
+				"import React from 'react';",
+				"import { Box } from '@mui/material';",
+				"",
+				"function ${TM_FILENAME_BASE}() {",
+				"  return <Box>Hello React!</Box>;",
+				"}",
+				"",
+				"export default ${TM_FILENAME_BASE};"
+			],
+			"description": "Create Functional React Component"
+		}
 ```
