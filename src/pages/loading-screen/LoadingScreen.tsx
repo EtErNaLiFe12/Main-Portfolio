@@ -1,9 +1,21 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import { LOTTIE_NAME } from 'consts';
+import useLottie from 'hooks/useLottie';
+import Lottie from 'react-lottie';
 
-function LoadingScreen() {
-  return <Box sx={{ zIndex: 9999, textAlign: 'center' }}>
-    <Typography sx={{ fontSize: 40 }}>Loading</Typography>
-  </Box>
+export default function LoadingScreen() {
+  const { configLottieFile } = useLottie();
+  return (
+    <Box
+      sx={{
+        zIndex: 9999,
+        height: 500,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Lottie options={configLottieFile(LOTTIE_NAME.DEFAULT)} height={200} width={200} />
+    </Box>
+  );
 }
-
-export default LoadingScreen;
