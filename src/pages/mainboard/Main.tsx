@@ -1,5 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { Box, Divider, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Divider,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/material';
 import Header from 'components/Header';
 import PaintBoard from 'components/PaintBoard';
 import { IMAGE_URL, LOTTIE_NAME } from 'consts';
@@ -12,42 +23,25 @@ import SlackIcon from 'assets/icon/slackIcon';
 import FigmaIcon from 'assets/icon/figmaIcon';
 import ScrollTop from 'components/ScrollTop';
 import MovementAnimation from 'components/MovementAnimation';
-import { map } from 'lodash';
+import Carousel from 'components/Carousel';
+import Introduction from './details/Introduction';
+import CommonDialog from 'components/CommonDialog';
 
-const techList = ['html', 'css', 'Javascript', 'Typescript', 'React', 'React-Native', 'NextJs'];
-const coworkingList = ['Github', 'Fork', 'Slack', 'Figma', 'Zeplin', 'Notion'];
-const expList = [
-  {
-    companyName: 'YoungSan-Techno',
-    workDate: '2011.10 ~ 2017.07',
-  },
-  {
-    companyName: 'M&S-Korea',
-    workDate: '2018.04 ~ 2020.07',
-  },
-  {
-    companyName: '미식의시대',
-    workDate: '2021.08 ~ 2022.02',
-  },
-  {
-    companyName: 'Gitple',
-    workDate: '2022.02 ~',
-  },
-];
 export default function Main() {
   const { configLottieFile } = useLottie();
   const [activeTab, setActiveTab] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
   const [activeScrollTop, setActiveScrollTop] = useState<boolean>(false);
   const portfolioRef = useRef<HTMLDivElement | null>(null);
-  const pictureRef = useRef<HTMLDivElement | null>(null);
+  const sideProjectRef = useRef<HTMLDivElement | null>(null);
   const introductionRef = useRef<HTMLDivElement | null>(null);
 
   const handleRef = (ref: string) => {
     switch (ref) {
       case 'PORTFOLIO':
         return portfolioRef;
-      case 'PICTURE':
-        return pictureRef;
+      case 'SIDE-PROJECT':
+        return sideProjectRef;
       case 'INTRODUCTION':
         return introductionRef;
     }
@@ -101,7 +95,7 @@ export default function Main() {
       >
         <Header sx={{ mb: 10 }} setActiveTab={setActiveTab} />
         <Box width={700}>
-          <Typography variant="h4" sx={{ fontWeight: 700, color: '#fff' }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, color: '#fff', mb: 1 }}>
             Welcome to My FE Develop Website
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff' }}>
@@ -111,7 +105,8 @@ export default function Main() {
         <MovementAnimation />
       </Box>
 
-      {/* body section */}
+      {/* ---------------------------------------------------------------- */}
+      {/* Body section */}
       <Divider
         sx={{
           height: 10,
@@ -153,6 +148,8 @@ export default function Main() {
           opacity: '50%',
         }}
       />
+
+      {/* ---------------------------------------------------------------- */}
       {/* Introduction Part */}
       <Box
         ref={introductionRef}
@@ -163,111 +160,24 @@ export default function Main() {
           height: 100,
           justifyContent: 'center',
           alignItems: 'center',
+          animation: 'line-animation 1s infinite alternate',
+          '@keyframes line-animation': {
+            '0%': {
+              backgroundColor: '#333',
+            },
+            '100%': {
+              backgroundColor: '#777',
+            },
+          },
         }}
       >
         <Typography variant="h5" textAlign={'center'} color="#fff" sx={{ fontWeight: 700 }}>
           INTRODUCTIONS
         </Typography>
       </Box>
-      <Box
-        sx={{
-          height: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'top',
-          m: 2.5,
-        }}
-      >
-        <Box
-          sx={{
-            flex: 1,
-            height: '100%',
-            border: 15,
-            borderColor: '#777',
-            boxSizing: 'border-box',
-            borderRadius: 5,
-            p: 2,
-            mr: 2.5,
-          }}
-        >
-          <Typography variant="h5" color="#777" textAlign="center" sx={{ fontWeight: 700 }}>
-            Developement Skills
-          </Typography>
-          <Box sx={{ mt: 4 }}>
-            {map(techList, (list, idx) => (
-              <Box component={'ul'} key={idx} sx={{ mb: 3 }}>
-                <Typography variant="h6" color="#777" component={'li'}>
-                  {list}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            flex: 1,
-            height: '100%',
-            border: 15,
-            borderColor: '#777',
-            boxSizing: 'border-box',
-            borderRadius: 5,
-            p: 2,
-            mr: 2.5,
-          }}
-        >
-          <Typography variant="h5" color="#777" textAlign="center" sx={{ fontWeight: 700 }}>
-            Co-working tools
-          </Typography>
-          <Box sx={{ mt: 4 }}>
-            {map(coworkingList, (list, idx) => (
-              <Box component={'ul'} key={idx} sx={{ mb: 3 }}>
-                <Typography variant="h6" color="#777" component={'li'} key={idx}>
-                  {list}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            flex: 2,
-            height: '100%',
-            border: 15,
-            borderColor: '#777',
-            boxSizing: 'border-box',
-            borderRadius: 5,
-            p: 2,
-          }}
-        >
-          <Typography variant="h5" color="#777" textAlign="center" sx={{ fontWeight: 700 }}>
-            My Experience
-          </Typography>
-          <Box sx={{ mt: 4 }}>
-            {map(expList, (list, idx) => (
-              <Box component={'ul'} key={idx} sx={{ mb: 3 }}>
-                <Typography variant="h6" color="#777" component={'li'}>
-                  {list.companyName} : {list.workDate}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        </Box>
+      <Introduction />
 
-        {/* <GithubIcon /> */}
-      </Box>
-      <Box
-        sx={{
-          height: 300,
-          border: 15,
-          borderColor: '#777',
-          boxSizing: 'border-box',
-          borderRadius: 5,
-          m: 3,
-        }}
-      >
-        <Typography>ggg</Typography>
-      </Box>
-
+      {/* ---------------------------------------------------------------- */}
       {/* Portfolio Part */}
       <Box
         ref={portfolioRef}
@@ -278,19 +188,39 @@ export default function Main() {
           height: 100,
           justifyContent: 'center',
           alignItems: 'center',
+          animation: 'line-animation 1s infinite alternate',
+          '@keyframes line-animation': {
+            '0%': {
+              backgroundColor: '#333',
+            },
+            '100%': {
+              backgroundColor: '#777',
+            },
+          },
         }}
       >
         <Typography variant="h5" textAlign={'center'} color="#fff" sx={{ fontWeight: 700 }}>
           PORTFOLIO
         </Typography>
       </Box>
-      <Box sx={{ height: 600 }}>
-        <Portfolio />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 600,
+          mx: 15,
+          my: 5,
+        }}
+      >
+        {/* <Portfolio /> */}
+        <Carousel />
       </Box>
 
-      {/* Picture part */}
+      {/* ---------------------------------------------------------------- */}
+      {/* Side-project part */}
       <Box
-        ref={pictureRef}
+        ref={sideProjectRef}
         sx={{
           display: 'flex',
           backgroundColor: 'rgba(0,0,0, 0.7)',
@@ -298,12 +228,39 @@ export default function Main() {
           height: 100,
           justifyContent: 'center',
           alignItems: 'center',
+          animation: 'line-animation 1s infinite alternate',
+          '@keyframes line-animation': {
+            '0%': {
+              backgroundColor: '#333',
+            },
+            '100%': {
+              backgroundColor: '#777',
+            },
+          },
         }}
       >
         <Typography variant="h5" textAlign={'center'} color="#fff" sx={{ fontWeight: 700 }}>
-          PICTURE
+          SIDE PROJECT
         </Typography>
       </Box>
+      <Button onClick={() => setOpen(true)} sx={{ width: 100, height: 50, border: 1 }}>
+        111
+      </Button>
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Disagree</Button>
+          <Button onClick={() => setOpen(false)}>Agree</Button>
+        </DialogActions>
+      </Dialog>
+      {/* <CommonDialog setOpen={setOpen} open={open} /> */}
       <Box sx={{ height: 600 }}></Box>
       {activeScrollTop && <ScrollTop />}
     </>

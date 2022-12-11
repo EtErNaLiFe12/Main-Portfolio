@@ -19,6 +19,7 @@ export default function ScrollTop(props?: BoxProps) {
         right: 20,
         bottom: 20,
         cursor: 'pointer',
+        ...props,
       }}
     >
       <Lottie options={configLottieFile(LOTTIE_NAME.SCROLL_TOP)} height={70} width={70} />

@@ -11,7 +11,7 @@ const mainMenu = [
     menu: 'PORTFOLIO',
   },
   {
-    menu: 'PICTURE',
+    menu: 'SIDE-PROJECT',
   },
 ];
 
@@ -78,7 +78,7 @@ export default function Header(props: HeaderProps) {
                       color: '#999',
                       transition: '.5s',
                     },
-                    cursor: 'pointer',
+                    // cursor: 'pointer',
                   }}
                 >
                   {side.menu}
