@@ -27,17 +27,22 @@ export default function CommonDialog(props: DialogProps) {
     setOpen(false);
   };
 
-  console.log('open', open);
-
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ width: 100, height: 50, border: 1 }}></Button>
-      <Dialog open={open} TransitionComponent={Transition} onClose={handleClose}>
+      <Button
+        onClick={() => setOpen(true)}
+        sx={{ width: 100, height: 50, border: 1 }}
+      ></Button>
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        onClose={handleClose}
+      >
         <DialogTitle>{"Use Google's location service?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

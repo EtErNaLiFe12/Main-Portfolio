@@ -27,9 +27,14 @@ import Carousel from 'components/Carousel';
 import Introduction from './details/Introduction';
 import CommonDialog from 'components/CommonDialog';
 import { forEach, map } from 'lodash';
+import { setCounter } from 'redux/slices/main';
+import { useSelector } from 'redux/store/store';
 
 export default function Main() {
   const { configLottieFile } = useLottie();
+  const { value } = useSelector((state) => ({
+    value: state.main.value,
+  }));
   const [activeTab, setActiveTab] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const [activeScrollTop, setActiveScrollTop] = useState<boolean>(false);
@@ -47,6 +52,10 @@ export default function Main() {
         return introductionRef;
     }
   };
+
+  useEffect(() => {
+    console.log('value', value);
+  }, [value]);
 
   // const calculateNum = () => {
   //   const numArr = [{ subject: 0 }, { subject: 66.5 }, { subject: 33.4 }, { subject: 0 }];
@@ -122,10 +131,7 @@ export default function Main() {
       >
         <Header sx={{ mb: 10 }} setActiveTab={setActiveTab} />
         <Box width={700}>
-          <Typography
-            variant="h4"
-            sx={{ fontWeight: 700, color: '#fff', mb: 1 }}
-          >
+          <Typography variant="h4" sx={{ fontWeight: 700, color: '#fff', mb: 1 }}>
             Welcome to My FE Develop Website
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff' }}>
@@ -309,8 +315,8 @@ export default function Main() {
         {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            Let Google help apps determine location. This means sending anonymous location
+            data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
