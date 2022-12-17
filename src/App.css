@@ -44,7 +44,7 @@ body {
 }
 
 .swiper-slide:nth-child(1n) {
-  background-color: #fb5849;
+  background-color: #f35844;
   opacity: 0.95;
 }
 
@@ -79,9 +79,4 @@ body {
   mix-blend-mode: difference;
   background-color: rgba(208, 211, 214, 0.7);
   z-index: 2;
-}
-.cursor:active {
-  width: 300px;
-  height: 300px;
-  transition: 3s linear;
 }

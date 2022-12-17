@@ -26,6 +26,7 @@ import MovementAnimation from 'components/MovementAnimation';
 import Carousel from 'components/Carousel';
 import Introduction from './details/Introduction';
 import CommonDialog from 'components/CommonDialog';
+import { forEach, map } from 'lodash';
 
 export default function Main() {
   const { configLottieFile } = useLottie();
@@ -46,6 +47,28 @@ export default function Main() {
         return introductionRef;
     }
   };
+
+  // const calculateNum = () => {
+  //   const numArr = [{ subject: 0 }, { subject: 66.5 }, { subject: 33.4 }, { subject: 0 }];
+  //   const subject = map(numArr, (num) => num.subject);
+  //   const initialValue = 0;
+  //   const sumWithInitial = subject.reduce(
+  //     (accumulator, currentValue) => accumulator + currentValue,
+  //     initialValue,
+  //   );
+
+  //   const greatestNum = Math.max.apply(null, subject);
+
+  //   if (sumWithInitial < 100) {
+  //     forEach(numArr, (arr) => {
+  //       if (arr.subject === greatestNum) {
+  //         arr.subject = greatestNum + 100 - sumWithInitial;
+  //       }
+  //     });
+  //   }
+
+  //   return numArr;
+  // };
 
   useEffect(() => {
     window.scrollTo({
@@ -79,6 +102,10 @@ export default function Main() {
     };
   }, [activeTab]);
 
+  // useEffect(() => {
+  //   calculateNum();
+  // }, []);
+
   return (
     <>
       {/* Header section */}
@@ -95,7 +122,10 @@ export default function Main() {
       >
         <Header sx={{ mb: 10 }} setActiveTab={setActiveTab} />
         <Box width={700}>
-          <Typography variant="h4" sx={{ fontWeight: 700, color: '#fff', mb: 1 }}>
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: 700, color: '#fff', mb: 1 }}
+          >
             Welcome to My FE Develop Website
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff' }}>
@@ -126,7 +156,12 @@ export default function Main() {
         }}
       >
         <Box>
-          <Typography variant="h3" textAlign={'center'} color="#fff" sx={{ fontWeight: 700 }}>
+          <Typography
+            variant="h3"
+            textAlign={'center'}
+            color="#fff"
+            sx={{ fontWeight: 700 }}
+          >
             FE Developer
           </Typography>
           <Typography
@@ -137,7 +172,11 @@ export default function Main() {
           >
             Jun Beom Park
           </Typography>
-          <Lottie options={configLottieFile(LOTTIE_NAME.CYCLE_RIDER)} height={200} width={200} />
+          <Lottie
+            options={configLottieFile(LOTTIE_NAME.CYCLE_RIDER)}
+            height={200}
+            width={200}
+          />
         </Box>
       </Box>
 
@@ -171,7 +210,12 @@ export default function Main() {
           },
         }}
       >
-        <Typography variant="h5" textAlign={'center'} color="#fff" sx={{ fontWeight: 700 }}>
+        <Typography
+          variant="h5"
+          textAlign={'center'}
+          color="#fff"
+          sx={{ fontWeight: 700 }}
+        >
           INTRODUCTIONS
         </Typography>
       </Box>
@@ -199,7 +243,12 @@ export default function Main() {
           },
         }}
       >
-        <Typography variant="h5" textAlign={'center'} color="#fff" sx={{ fontWeight: 700 }}>
+        <Typography
+          variant="h5"
+          textAlign={'center'}
+          color="#fff"
+          sx={{ fontWeight: 700 }}
+        >
           PORTFOLIO
         </Typography>
       </Box>
@@ -239,20 +288,29 @@ export default function Main() {
           },
         }}
       >
-        <Typography variant="h5" textAlign={'center'} color="#fff" sx={{ fontWeight: 700 }}>
+        <Typography
+          variant="h5"
+          textAlign={'center'}
+          color="#fff"
+          sx={{ fontWeight: 700 }}
+        >
           SIDE PROJECT
         </Typography>
       </Box>
-      <Button onClick={() => setOpen(true)} sx={{ width: 100, height: 50, border: 1 }}>
-        111
+      <Button
+        onClick={() => setOpen(true)}
+        sx={{ width: 150, height: 50, border: 2, mt: 1, ml: 1 }}
+      >
+        Test Popup
       </Button>
+      {/* <PaintBoard /> */}
 
       <Dialog open={open} onClose={() => setOpen(false)}>
         {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

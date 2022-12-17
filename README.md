@@ -27,6 +27,7 @@ yarn add @mui/icons-material
 
 ## snippet customizing
 
+- Code -> Preference -> Configure user snippet -> typescriptreact.json
 ### snippet generator
 
 [snippet-generator-site](https://snippet-generator.app/?description=Create+Functional+React+Component&tabtrigger=fc&snippet=import+React+from+%27react%27%3B%0A%0Afunction+%24%7BTM_FILENAME_BASE%7D%28%29+%7B%0A%0A++return+%3Cdiv%3EHello+React%21%3C%2Fdiv%3E%3B%0A%7D%0A%0Aexport+default+%24%7BTM_FILENAME_BASE%7D%3B&mode=vscode)

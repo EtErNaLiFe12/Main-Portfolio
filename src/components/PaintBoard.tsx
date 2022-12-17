@@ -39,7 +39,7 @@ export default function PaintBoard() {
   return (
     <Box
       component={'canvas'}
-      sx={{ backgroundColor: '#fff', backgroundSize: 'cover' }}
+      sx={{ backgroundColor: '#fff', backgroundSize: 'cover', border: 10 }}
       ref={canvasRef}
       width={WIDTH}
       height={HEIGHT}
