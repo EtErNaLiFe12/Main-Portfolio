@@ -10,7 +10,6 @@ import {
   Link,
   Stack,
   Typography,
-  useMediaQuery,
 } from '@mui/material';
 import Header from 'components/Header';
 import PaintBoard from 'components/PaintBoard';
@@ -35,9 +34,9 @@ import useResponsive from 'hooks/useResponsive';
 export default function Main() {
   const { configLottieFile } = useLottie();
   const WIDTH900 = useResponsive('max', 900);
-  const { value } = useSelector((state) => ({
-    value: state.main.value,
-  }));
+  // const { value } = useSelector((state) => ({
+  //   value: state.main.value,
+  // }));
   const [activeTab, setActiveTab] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const [activeScrollTop, setActiveScrollTop] = useState<boolean>(false);
@@ -55,28 +54,6 @@ export default function Main() {
         return introductionRef;
     }
   };
-
-  // const calculateNum = () => {
-  //   const numArr = [{ subject: 0 }, { subject: 66.5 }, { subject: 33.4 }, { subject: 0 }];
-  //   const subject = map(numArr, (num) => num.subject);
-  //   const initialValue = 0;
-  //   const sumWithInitial = subject.reduce(
-  //     (accumulator, currentValue) => accumulator + currentValue,
-  //     initialValue,
-  //   );
-
-  //   const greatestNum = Math.max.apply(null, subject);
-
-  //   if (sumWithInitial < 100) {
-  //     forEach(numArr, (arr) => {
-  //       if (arr.subject === greatestNum) {
-  //         arr.subject = greatestNum + 100 - sumWithInitial;
-  //       }
-  //     });
-  //   }
-
-  //   return numArr;
-  // };
 
   useEffect(() => {
     window.scrollTo({

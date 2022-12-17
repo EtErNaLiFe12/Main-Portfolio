@@ -12,7 +12,11 @@ const logger = createLogger();
 
 const store = configureStore({
   reducer: rootReducer,
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(({
+    serializableCheck: false,
+    immutableCheck: false
+  })),
+    // .concat(logger),
   // devTools: process.env.NODE_ENV !== 'production',
   // preloadedState: initialState,
   enhancers: (defaultEnhancers) => [...defaultEnhancers]

@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
@@ -11,12 +11,14 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { persistor, store } from 'redux/store/store';
 import PersistLoadingScreen from 'pages/PersistLoadingScreen';
 
-// Rendering issue 있음
+// Rendering issue 있음\
 // const root = ReactDOM.createRoot(
 //   document.getElementById('root') as HTMLElement,
 // );
 
-ReactDOM.render(
+const rootNode = document.getElementById('root') as HTMLElement;
+
+ReactDOM.createRoot(rootNode).render(
   <StrictMode>
     <HelmetProvider>
       <ReduxProvider store={store}>
@@ -28,7 +30,6 @@ ReactDOM.render(
       </ReduxProvider>
     </HelmetProvider>
   </StrictMode>,
-  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
