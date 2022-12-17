@@ -10,6 +10,7 @@ import {
   Link,
   Stack,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import Header from 'components/Header';
 import PaintBoard from 'components/PaintBoard';
@@ -29,9 +30,11 @@ import CommonDialog from 'components/CommonDialog';
 import { forEach, map } from 'lodash';
 import { setCounter } from 'redux/slices/main';
 import { useSelector } from 'redux/store/store';
+import useResponsive from 'hooks/useResponsive';
 
 export default function Main() {
   const { configLottieFile } = useLottie();
+  const WIDTH900 = useResponsive('max', 900);
   const { value } = useSelector((state) => ({
     value: state.main.value,
   }));
@@ -52,10 +55,6 @@ export default function Main() {
         return introductionRef;
     }
   };
-
-  useEffect(() => {
-    console.log('value', value);
-  }, [value]);
 
   // const calculateNum = () => {
   //   const numArr = [{ subject: 0 }, { subject: 66.5 }, { subject: 33.4 }, { subject: 0 }];
@@ -117,11 +116,11 @@ export default function Main() {
 
   return (
     <>
-      {/* Header section */}
+      {/* Header section  */}
       <Box
         sx={{
           pt: 2,
-          px: 5,
+          px: WIDTH900 ? 3 : 5,
           height: '100vh',
           backgroundImage: `url(${IMAGE_URL.MAIN_BG})`,
           backgroundPosition: 'center',
@@ -130,15 +129,19 @@ export default function Main() {
         }}
       >
         <Header sx={{ mb: 10 }} setActiveTab={setActiveTab} />
-        <Box width={700}>
-          <Typography variant="h4" sx={{ fontWeight: 700, color: '#fff', mb: 1 }}>
+        <Box width={WIDTH900 ? 400 : 700}>
+          <Typography
+            variant={WIDTH900 ? 'h6' : 'h4'}
+            sx={{ fontWeight: 700, color: '#fff', mb: 1 }}
+          >
             Welcome to My FE Develop Website
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 700, color: '#fff' }}>
+            {' '}
             - Made by developer JB -
           </Typography>
         </Box>
-        <MovementAnimation />
+        {!WIDTH900 && <MovementAnimation />}
       </Box>
 
       {/* ---------------------------------------------------------------- */}
@@ -196,7 +199,7 @@ export default function Main() {
 
       {/* ---------------------------------------------------------------- */}
       {/* Introduction Part */}
-      <Box
+      {/* <Box
         ref={introductionRef}
         sx={{
           display: 'flex',
@@ -225,11 +228,11 @@ export default function Main() {
           INTRODUCTIONS
         </Typography>
       </Box>
-      <Introduction />
+      <Introduction /> */}
 
       {/* ---------------------------------------------------------------- */}
       {/* Portfolio Part */}
-      <Box
+      {/* <Box
         ref={portfolioRef}
         sx={{
           display: 'flex',
@@ -268,9 +271,8 @@ export default function Main() {
           my: 5,
         }}
       >
-        {/* <Portfolio /> */}
         <Carousel />
-      </Box>
+      </Box> */}
 
       {/* ---------------------------------------------------------------- */}
       {/* Side-project part */}
@@ -309,7 +311,6 @@ export default function Main() {
       >
         Test Popup
       </Button>
-      {/* <PaintBoard /> */}
 
       <Dialog open={open} onClose={() => setOpen(false)}>
         {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}

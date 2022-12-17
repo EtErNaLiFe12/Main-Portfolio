@@ -1,5 +1,6 @@
 import { Box, BoxProps, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
+import useResponsive from 'hooks/useResponsive';
 import { map } from 'lodash';
 import { Fragment } from 'react';
 
@@ -20,6 +21,7 @@ interface HeaderProps {
   setActiveTab: (activeTab: string) => void;
 }
 export default function Header(props: HeaderProps) {
+  const WIDTH900 = useResponsive('max', 900);
   const { sx, setActiveTab } = props;
 
   return (
@@ -52,7 +54,7 @@ export default function Header(props: HeaderProps) {
             color: '#fb5849',
           }}
         >
-          <Typography sx={{ fontSize: '20px', fontWeight: 700, color: '#fff', cursor: 'pointer' }}>
+          <Typography variant="h6" sx={{ color: '#fff', cursor: 'pointer' }}>
             JB DEVELOP WEB
           </Typography>
         </motion.div>
@@ -71,7 +73,7 @@ export default function Header(props: HeaderProps) {
               >
                 <Typography
                   sx={{
-                    fontSize: '18px',
+                    fontSize: WIDTH900 ? '12px' : '18px',
                     fontWeight: 700,
                     color: '#fff',
                     '&:hover': {
