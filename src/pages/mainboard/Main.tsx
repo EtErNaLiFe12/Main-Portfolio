@@ -28,15 +28,16 @@ import Introduction from './details/Introduction';
 import CommonDialog from 'components/CommonDialog';
 import { forEach, map } from 'lodash';
 import { setCounter } from 'redux/slices/main';
-import { useSelector } from 'redux/store/store';
 import useResponsive from 'hooks/useResponsive';
+import { useSelector } from 'redux/store/store';
 
 export default function Main() {
   const { configLottieFile } = useLottie();
-  const WIDTH900 = useResponsive('max', 900);
-  // const { value } = useSelector((state) => ({
-  //   value: state.main.value,
-  // }));
+  const { WIDTH900, WIDTH401 } = useResponsive();
+
+  const { value } = useSelector((state) => ({
+    value: state.main.value,
+  }));
   const [activeTab, setActiveTab] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
   const [activeScrollTop, setActiveScrollTop] = useState<boolean>(false);
@@ -87,10 +88,6 @@ export default function Main() {
     };
   }, [activeTab]);
 
-  // useEffect(() => {
-  //   calculateNum();
-  // }, []);
-
   return (
     <>
       {/* Header section  */}
@@ -106,7 +103,7 @@ export default function Main() {
         }}
       >
         <Header sx={{ mb: 10 }} setActiveTab={setActiveTab} />
-        <Box width={WIDTH900 ? 400 : 700}>
+        <Box width={WIDTH900 ? (WIDTH401 ? 320 : 400) : 700}>
           <Typography
             variant={WIDTH900 ? 'h6' : 'h4'}
             sx={{ fontWeight: 700, color: '#fff', mb: 1 }}
@@ -143,7 +140,7 @@ export default function Main() {
       >
         <Box>
           <Typography
-            variant="h3"
+            variant={WIDTH900 ? 'h5' : 'h3'}
             textAlign={'center'}
             color="#fff"
             sx={{ fontWeight: 700 }}
@@ -176,7 +173,7 @@ export default function Main() {
 
       {/* ---------------------------------------------------------------- */}
       {/* Introduction Part */}
-      {/* <Box
+      <Box
         ref={introductionRef}
         sx={{
           display: 'flex',
@@ -205,11 +202,11 @@ export default function Main() {
           INTRODUCTIONS
         </Typography>
       </Box>
-      <Introduction /> */}
+      <Introduction />
 
       {/* ---------------------------------------------------------------- */}
       {/* Portfolio Part */}
-      {/* <Box
+      <Box
         ref={portfolioRef}
         sx={{
           display: 'flex',
@@ -249,7 +246,7 @@ export default function Main() {
         }}
       >
         <Carousel />
-      </Box> */}
+      </Box>
 
       {/* ---------------------------------------------------------------- */}
       {/* Side-project part */}

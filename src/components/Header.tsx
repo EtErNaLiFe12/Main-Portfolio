@@ -22,7 +22,7 @@ interface HeaderProps {
 }
 export default function Header(props: HeaderProps) {
   const { sx, setActiveTab } = props;
-  const WIDTH900 = useResponsive('max', 900);
+  const { WIDTH900 } = useResponsive();
 
   return (
     <Fragment>

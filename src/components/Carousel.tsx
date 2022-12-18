@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Autoplay, EffectCards, Navigation, Pagination } from 'swiper';
 import { map } from 'lodash';
+import useResponsive from 'hooks/useResponsive';
 
 const portfolioContent = [
   {
@@ -29,10 +30,11 @@ const portfolioContent = [
   },
 ];
 export default function Carousel() {
+  const { WIDTH900 } = useResponsive();
   return (
     <>
       <Swiper
-        effect={'cards'}
+        effect={'slide'}
         grabCursor={true}
         modules={[EffectCards, Autoplay, Pagination, Navigation]}
         loop={false}
